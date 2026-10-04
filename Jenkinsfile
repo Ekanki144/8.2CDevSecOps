@@ -18,6 +18,24 @@ pipeline {
             steps {
                 bat 'npm test || exit /b 0'
             }
+            post {
+                success {
+                    emailext(
+                        to: 'YOUR_GMAIL@gmail.com',
+                        subject: "Jenkins Test Stage - SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                        body: "The Run Tests stage completed successfully.\n\nBuild: ${env.BUILD_URL}",
+                        attachLog: true
+                    )
+                }
+                failure {
+                    emailext(
+                        to: 'YOUR_GMAIL@gmail.com',
+                        subject: "Jenkins Test Stage - FAILURE - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                        body: "The Run Tests stage failed.\n\nBuild: ${env.BUILD_URL}",
+                        attachLog: true
+                    )
+                }
+            }
         }
 
         stage('Generate Coverage Report') {
@@ -29,6 +47,24 @@ pipeline {
         stage('NPM Audit (Security Scan)') {
             steps {
                 bat 'npm audit || exit /b 0'
+            }
+            post {
+                success {
+                    emailext(
+                        to: 'YOUR_GMAIL@gmail.com',
+                        subject: "Jenkins Security Scan - SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                        body: "The NPM Audit security scan completed successfully.\n\nBuild: ${env.BUILD_URL}",
+                        attachLog: true
+                    )
+                }
+                failure {
+                    emailext(
+                        to: 'YOUR_GMAIL@gmail.com',
+                        subject: "Jenkins Security Scan - FAILURE - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                        body: "The NPM Audit security scan failed.\n\nBuild: ${env.BUILD_URL}",
+                        attachLog: true
+                    )
+                }
             }
         }
     }
