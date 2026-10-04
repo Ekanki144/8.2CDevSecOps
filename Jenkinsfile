@@ -21,7 +21,7 @@ pipeline {
             post {
                 success {
                     emailext(
-                        to: 'YOUR_GMAIL@gmail.com',
+                        to: 'ekankimahajan056@gmail.com',
                         subject: "Jenkins Test Stage - SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "The Run Tests stage completed successfully.\n\nBuild: ${env.BUILD_URL}",
                         attachLog: true
@@ -29,7 +29,7 @@ pipeline {
                 }
                 failure {
                     emailext(
-                        to: 'YOUR_GMAIL@gmail.com',
+                        to: 'ekankimahajan056@gmail.com',
                         subject: "Jenkins Test Stage - FAILURE - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "The Run Tests stage failed.\n\nBuild: ${env.BUILD_URL}",
                         attachLog: true
@@ -51,7 +51,7 @@ pipeline {
             post {
                 success {
                     emailext(
-                        to: 'YOUR_GMAIL@gmail.com',
+                        to: 'ekankimahajan056@gmail.com',
                         subject: "Jenkins Security Scan - SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "The NPM Audit security scan completed successfully.\n\nBuild: ${env.BUILD_URL}",
                         attachLog: true
@@ -59,7 +59,7 @@ pipeline {
                 }
                 failure {
                     emailext(
-                        to: 'YOUR_GMAIL@gmail.com',
+                        to: 'ekankimahajan056@gmail.com',
                         subject: "Jenkins Security Scan - FAILURE - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                         body: "The NPM Audit security scan failed.\n\nBuild: ${env.BUILD_URL}",
                         attachLog: true
